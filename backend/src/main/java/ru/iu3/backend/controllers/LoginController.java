@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import ru.iu3.backend.models.User;
 import ru.iu3.backend.repositories.UserRepository;
 import ru.iu3.backend.Tools.Utils;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/auth")
 public class LoginController {
@@ -36,7 +38,7 @@ public class LoginController {
                 String hash1 = u2.password;
                 String salt = u2.salt;
                 String hash2 = Utils.ComputeHash(pwd, salt);
-                if (hash1.toLowerCase().equals(hash2.toLowerCase())) {
+                if (hash1.equalsIgnoreCase(hash2)) {
                     String token = UUID.randomUUID().toString();
                     u2.token = token;
                     u2.activity = LocalDateTime.now();
