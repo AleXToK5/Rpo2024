@@ -41,6 +41,30 @@ class BackendService {
   logout() {
     return axios.get(`${AUTH_URL}/logout`, { headers : {Authorization : Utils.getToken()}})
   }
+
+// Здесь вскрылась ещё одна беда:
+// при получении ошибки не выводится её название, а пишется стандартное сообщение
+// хотя на стороне бэкенда класс написан корректно и путём отладки было установлено, что в 500 ошибку
+// записывается данное сообщение. Но на стороне фронтенда мы её не получаем. При чём выполняется только последнее условие
+  retrieveAllCountries(page, limit) {
+      return axios.get(`${API_URL}/countries`);
+  }
+
+  retrieveCountry(id) {
+      return axios.get(`${API_URL}/countries/${id}`);
+  }
+
+  createCountry(country) {
+      return axios.post(`${API_URL}/countries`, country);
+  }
+
+  updateCountry(country) {
+      return axios.put(`${API_URL}/countries/${country.id}`, country);
+  }
+
+  deleteCountries(countries) {
+      return axios.post(`${API_URL}/deletecountries`, countries);
+  }
 }
 
 export default new BackendService()
