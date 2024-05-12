@@ -12,6 +12,9 @@ public class User {
 
     public User() {
     }
+    @Transient
+    public String np;
+
 
     public User(Long id) {
         this.id = id;
