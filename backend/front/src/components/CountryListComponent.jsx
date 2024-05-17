@@ -78,7 +78,7 @@ const CountryListComponent = props => {
     }
 
     useEffect(() => {
-        refreshCountries();
+        refreshCountries(page);
     }, [])
 
     const updateCountryClicked = id => {
@@ -87,7 +87,7 @@ const CountryListComponent = props => {
 
     const onDelete = () => {
         BackendService.deleteCountries(selectedCountries)
-            .then( () => refreshCountries())
+            .then( () => refreshCountries(page))
             .catch(()=>{})
     }
 

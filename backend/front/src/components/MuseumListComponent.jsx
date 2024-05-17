@@ -80,7 +80,7 @@ const MuseumListComponent = props => {
     }
 
     useEffect(() => {
-        refreshMuseums();
+        refreshMuseums(page);
     }, [])
 
     const updateMuseumsClicked = id => {
@@ -89,7 +89,7 @@ const MuseumListComponent = props => {
 
     const onDelete = () => {
         BackendService.deleteMuseums(selectedMuseums)
-            .then(() => refreshMuseums())
+            .then(() => refreshMuseums(page))
             .catch(() => {
             })
     }

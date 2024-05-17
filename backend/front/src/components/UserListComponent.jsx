@@ -81,7 +81,7 @@ const UserListComponent = props => {
     }
 
     useEffect(() => {
-        refreshUsers();
+        refreshUsers(page);
     }, [])
 
     // Было решено убрать кнопку редактирования чужих пользовательских данных
@@ -102,7 +102,7 @@ const UserListComponent = props => {
 
         if (canRemove) {
             BackendService.deleteUsers(selectedUsers)
-                .then(() => refreshUsers())
+                .then(() => refreshUsers(page))
                 .catch(() => {
                 })
         }

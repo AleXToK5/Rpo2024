@@ -82,7 +82,7 @@ const PaintingListComponent = props => {
     }
 
     useEffect(() => {
-        refreshPaintings();
+        refreshPaintings(page);
     }, [])
 
     const updatePaintingClicked = id => {
@@ -93,7 +93,7 @@ const PaintingListComponent = props => {
     const onDelete = () => {
         BackendService.deletePaintings(selectedArtists)
             .then(() => {
-                refreshPaintings()
+                refreshPaintings(page)
             })
             .catch(() => {
             })
